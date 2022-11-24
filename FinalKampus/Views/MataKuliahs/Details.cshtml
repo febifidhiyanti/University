@@ -1,0 +1,45 @@
+﻿@model FinalKampus.Models.MataKuliah
+
+@{
+    ViewBag.Title = "Mata Kuliah";
+}
+
+
+<div>
+    <br />
+    <h3>
+        <b>Details Data Mahasiswa</b>
+    </h3>
+    <hr />
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+           Nama Mata Kuliah
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.matakuliah_nama)
+        </dd>
+
+        <dt>
+            Semester
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.matakuliah_semester)
+        </dd>
+
+        <dt>
+            Harga Mata Kuliah
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.matakuliah_harga)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.matakuliah_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

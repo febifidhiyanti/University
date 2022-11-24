@@ -1,0 +1,71 @@
+﻿@model FinalKampus.Models.Seminar
+
+@{
+    ViewBag.Title = "Seminar";
+}
+
+<div>
+    <br />
+    <h3 style="color:red;"><b>Apakah kamu yakin ingin menghapus data ini?</b></h3>
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+            Nama Seminar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seminar_nama)
+        </dd>
+
+        <dt>
+           Dosen Seminar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seminar_dosen)
+        </dd>
+
+        <dt>
+            Topik Seminar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seminar_topik)
+        </dd>
+
+        <dt>
+           Harga Seminar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seminar_harga)
+        </dd>
+
+        <dt>
+            Tanggal Seminar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seminar_tanggal)
+        </dd>
+
+        <dt>
+            Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seminar_ket)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

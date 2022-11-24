@@ -1,0 +1,105 @@
+﻿@model FinalKampus.Models.Mahasiswa
+
+@{
+    ViewBag.Title = "Mahasiswa";
+}
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <br />
+    <h3>
+        <b>Masukkan Data Mahasiswa</b>
+    </h3>
+    <hr />
+    <br />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>NRP Mahasiswa</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NRP, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NRP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Mata Kuliah Pilihan</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.DropDownList("IDMataKuliah", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IDMataKuliah, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Seminar Pilihan</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.DropDownList("IDSeminar", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IDSeminar, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Semester Mahasiswa</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.mahasiswa_semester, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mahasiswa_semester, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Nama Mahasiswa</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.mahasiswa_nama, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mahasiswa_nama, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Jurusan Mahasiswa</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.mahasiswa_jurusan, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mahasiswa_jurusan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Total harga</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.mahasiswa_alamat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mahasiswa_alamat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

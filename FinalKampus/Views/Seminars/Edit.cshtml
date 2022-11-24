@@ -1,0 +1,96 @@
+﻿@model FinalKampus.Models.Seminar
+
+@{
+    ViewBag.Title = "Seminar";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <br />
+    <h3>
+        <b>Ubah Data Seminar</b>
+    </h3>
+    <hr />
+    <br />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.seminar_id)
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Nama Seminar</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.seminar_nama, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.seminar_nama, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Dosen Seminar</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.seminar_dosen, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.seminar_dosen, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Topik Seminar</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.seminar_topik, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.seminar_topik, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Harga Seminar</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.seminar_harga, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.seminar_harga, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Tanggal Seminar</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.seminar_tanggal, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.seminar_tanggal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <h5><b>Status</b></h5>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.seminar_ket, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.seminar_ket, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

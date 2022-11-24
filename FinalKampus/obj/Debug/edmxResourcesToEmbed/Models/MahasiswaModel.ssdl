@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KampusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Mahasiswa">
+    <Key>
+      <PropertyRef Name="NRP" />
+    </Key>
+    <Property Name="NRP" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="IDMataKuliah" Type="int" Nullable="false" />
+    <Property Name="IDSeminar" Type="int" Nullable="false" />
+    <Property Name="mahasiswa_semester" Type="int" />
+    <Property Name="mahasiswa_nama" Type="nvarchar" MaxLength="50" />
+    <Property Name="mahasiswa_jurusan" Type="nvarchar" MaxLength="50" />
+    <Property Name="mahasiswa_alamat" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MataKuliah">
+    <Key>
+      <PropertyRef Name="matakuliah_id" />
+    </Key>
+    <Property Name="matakuliah_id" Type="int" Nullable="false" />
+    <Property Name="matakuliah_nama" Type="nvarchar" MaxLength="50" />
+    <Property Name="matakuliah_semester" Type="int" />
+    <Property Name="matakuliah_harga" Type="int" />
+  </EntityType>
+  <EntityType Name="Seminar">
+    <Key>
+      <PropertyRef Name="seminar_id" />
+    </Key>
+    <Property Name="seminar_id" Type="int" Nullable="false" />
+    <Property Name="seminar_nama" Type="nvarchar" MaxLength="50" />
+    <Property Name="seminar_dosen" Type="nvarchar" MaxLength="50" />
+    <Property Name="seminar_topik" Type="nvarchar" MaxLength="50" />
+    <Property Name="seminar_harga" Type="nvarchar" MaxLength="50" />
+    <Property Name="seminar_tanggal" Type="datetime" />
+    <Property Name="seminar_ket" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Mahasiswa_To_MataKuliah">
+    <End Role="MataKuliah" Type="Self.MataKuliah" Multiplicity="1" />
+    <End Role="Mahasiswa" Type="Self.Mahasiswa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MataKuliah">
+        <PropertyRef Name="matakuliah_id" />
+      </Principal>
+      <Dependent Role="Mahasiswa">
+        <PropertyRef Name="IDMataKuliah" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mahasiswa_To_Seminar">
+    <End Role="Seminar" Type="Self.Seminar" Multiplicity="1" />
+    <End Role="Mahasiswa" Type="Self.Mahasiswa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seminar">
+        <PropertyRef Name="seminar_id" />
+      </Principal>
+      <Dependent Role="Mahasiswa">
+        <PropertyRef Name="IDSeminar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KampusModelStoreContainer">
+    <EntitySet Name="Mahasiswa" EntityType="Self.Mahasiswa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MataKuliah" EntityType="Self.MataKuliah" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Seminar" EntityType="Self.Seminar" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Mahasiswa_To_MataKuliah" Association="Self.FK_Mahasiswa_To_MataKuliah">
+      <End Role="MataKuliah" EntitySet="MataKuliah" />
+      <End Role="Mahasiswa" EntitySet="Mahasiswa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mahasiswa_To_Seminar" Association="Self.FK_Mahasiswa_To_Seminar">
+      <End Role="Seminar" EntitySet="Seminar" />
+      <End Role="Mahasiswa" EntitySet="Mahasiswa" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

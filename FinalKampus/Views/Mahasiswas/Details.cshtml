@@ -1,0 +1,76 @@
+﻿@model FinalKampus.Models.Mahasiswa
+
+@{
+    ViewBag.Title = "Mahasiswa";
+}
+
+<div>
+    <br />
+    <h3>
+        <b>Details Data Mahasiswa</b>
+    </h3>
+    <hr />
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+            NRP
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NRP)
+        </dd>
+
+        <dt>
+            Semester
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mahasiswa_semester)
+        </dd>
+
+        <dt>
+            Nama Mahasiswa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mahasiswa_nama)
+        </dd>
+
+        <dt>
+            Jurusan Mahasiswa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mahasiswa_jurusan)
+        </dd>
+
+        <dt>
+            Mata Kuliah Tambahan Yang dipilih
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MataKuliah.matakuliah_nama)
+        </dd>
+
+        <dt>
+            Seminar Yang Diambil
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seminar.seminar_nama)
+        </dd>
+
+        <dt>
+            Total Harga
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mahasiswa_alamat)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NRP }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

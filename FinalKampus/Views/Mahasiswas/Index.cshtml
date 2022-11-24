@@ -1,0 +1,77 @@
+﻿@model IEnumerable<FinalKampus.Models.Mahasiswa>
+
+@{
+    ViewBag.Title = "Mahasiswa";
+}
+
+<h2>Mahasiswa</h2>
+<p style="color:red;">
+    <i>
+        Mahasiswa hanya bisa memilih 1 Mata Kuliah berbayar dan 1 Seminar berbayar
+    </i>
+</p>
+<br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            NRP Mahasiswa
+        </th>
+        <th>
+            Semester
+        </th>
+        <th>
+            Nama Mahasiswa
+        </th>
+        <th>
+            Jurusan
+        </th>
+        <th>
+            Nama Mata Kuliah
+        </th>
+        <th>
+            Nama Seminar
+        </th>
+        <th>
+            Total Harga
+        </th>
+        <th>
+            Aksi
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NRP)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.mahasiswa_semester)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.mahasiswa_nama)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.mahasiswa_jurusan)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MataKuliah.matakuliah_nama) 
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Seminar.seminar_nama) 
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.mahasiswa_alamat)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.NRP }) |
+        @Html.ActionLink("Details", "Details", new { id = item.NRP }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.NRP })
+    </td>
+</tr>
+}
+
+</table>

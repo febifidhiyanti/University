@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KampusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Mahasiswa">
+    <Key>
+      <PropertyRef Name="NRP" />
+    </Key>
+    <Property Name="NRP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IDMataKuliah" Type="Int32" Nullable="false" />
+    <Property Name="IDSeminar" Type="Int32" Nullable="false" />
+    <Property Name="mahasiswa_semester" Type="Int32" />
+    <Property Name="mahasiswa_nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mahasiswa_jurusan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mahasiswa_alamat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MataKuliah" Relationship="Self.FK_Mahasiswa_To_MataKuliah" FromRole="Mahasiswa" ToRole="MataKuliah" />
+    <NavigationProperty Name="Seminar" Relationship="Self.FK_Mahasiswa_To_Seminar" FromRole="Mahasiswa" ToRole="Seminar" />
+  </EntityType>
+  <EntityType Name="MataKuliah">
+    <Key>
+      <PropertyRef Name="matakuliah_id" />
+    </Key>
+    <Property Name="matakuliah_id" Type="Int32" Nullable="false" />
+    <Property Name="matakuliah_nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="matakuliah_semester" Type="Int32" />
+    <Property Name="matakuliah_harga" Type="Int32" />
+    <NavigationProperty Name="Mahasiswas" Relationship="Self.FK_Mahasiswa_To_MataKuliah" FromRole="MataKuliah" ToRole="Mahasiswa" />
+  </EntityType>
+  <EntityType Name="Seminar">
+    <Key>
+      <PropertyRef Name="seminar_id" />
+    </Key>
+    <Property Name="seminar_id" Type="Int32" Nullable="false" />
+    <Property Name="seminar_nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="seminar_dosen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="seminar_topik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="seminar_harga" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="seminar_tanggal" Type="DateTime" Precision="3" />
+    <Property Name="seminar_ket" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Mahasiswas" Relationship="Self.FK_Mahasiswa_To_Seminar" FromRole="Seminar" ToRole="Mahasiswa" />
+  </EntityType>
+  <Association Name="FK_Mahasiswa_To_MataKuliah">
+    <End Role="MataKuliah" Type="Self.MataKuliah" Multiplicity="1" />
+    <End Role="Mahasiswa" Type="Self.Mahasiswa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MataKuliah">
+        <PropertyRef Name="matakuliah_id" />
+      </Principal>
+      <Dependent Role="Mahasiswa">
+        <PropertyRef Name="IDMataKuliah" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mahasiswa_To_Seminar">
+    <End Role="Seminar" Type="Self.Seminar" Multiplicity="1" />
+    <End Role="Mahasiswa" Type="Self.Mahasiswa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seminar">
+        <PropertyRef Name="seminar_id" />
+      </Principal>
+      <Dependent Role="Mahasiswa">
+        <PropertyRef Name="IDSeminar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KampusEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Mahasiswas" EntityType="Self.Mahasiswa" />
+    <EntitySet Name="MataKuliahs" EntityType="Self.MataKuliah" />
+    <EntitySet Name="Seminars" EntityType="Self.Seminar" />
+    <AssociationSet Name="FK_Mahasiswa_To_MataKuliah" Association="Self.FK_Mahasiswa_To_MataKuliah">
+      <End Role="MataKuliah" EntitySet="MataKuliahs" />
+      <End Role="Mahasiswa" EntitySet="Mahasiswas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mahasiswa_To_Seminar" Association="Self.FK_Mahasiswa_To_Seminar">
+      <End Role="Seminar" EntitySet="Seminars" />
+      <End Role="Mahasiswa" EntitySet="Mahasiswas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

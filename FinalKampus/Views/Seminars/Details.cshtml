@@ -1,0 +1,68 @@
+﻿@model FinalKampus.Models.Seminar
+
+@{
+    ViewBag.Title = "seminar";
+}
+
+<div>
+    <br />
+    <h3>
+        <b>Details Data Seminar</b>
+    </h3>
+    <hr />
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+           Nama Seminar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seminar_nama)
+        </dd>
+
+        <dt>
+            Dosen Seminar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seminar_dosen)
+        </dd>
+
+        <dt>
+            Topik Seminar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seminar_topik)
+        </dd>
+
+        <dt>
+            Harga Seminar
+        </dt>
+
+        <dd>
+            Rp.@Html.DisplayFor(model => model.seminar_harga),-
+        </dd>
+
+        <dt>
+           Tanggal Seminar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seminar_tanggal)
+        </dd>
+
+        <dt>
+           Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seminar_ket)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.seminar_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

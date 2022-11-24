@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FinalKampus.Models.MataKuliah>
+
+@{
+    ViewBag.Title = "Mata Kuliah";
+}
+
+<h2>Mata Kuliah</h2>
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nama Mata Kuliah
+        </th>
+        <th>
+            Semester
+        </th>
+        <th>
+            Harga Mata Kuliah
+        </th>
+        <th>
+            Aksi
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.matakuliah_nama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.matakuliah_semester)
+        </td>
+        <td>
+            Rp.@Html.DisplayFor(modelItem => item.matakuliah_harga),-
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.matakuliah_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.matakuliah_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.matakuliah_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KampusModelStoreContainer" CdmEntityContainer="KampusEntities">
+    <EntitySetMapping Name="Mahasiswas">
+      <EntityTypeMapping TypeName="KampusModel.Mahasiswa">
+        <MappingFragment StoreEntitySet="Mahasiswa">
+          <ScalarProperty Name="NRP" ColumnName="NRP" />
+          <ScalarProperty Name="IDMataKuliah" ColumnName="IDMataKuliah" />
+          <ScalarProperty Name="IDSeminar" ColumnName="IDSeminar" />
+          <ScalarProperty Name="mahasiswa_semester" ColumnName="mahasiswa_semester" />
+          <ScalarProperty Name="mahasiswa_nama" ColumnName="mahasiswa_nama" />
+          <ScalarProperty Name="mahasiswa_jurusan" ColumnName="mahasiswa_jurusan" />
+          <ScalarProperty Name="mahasiswa_alamat" ColumnName="mahasiswa_alamat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MataKuliahs">
+      <EntityTypeMapping TypeName="KampusModel.MataKuliah">
+        <MappingFragment StoreEntitySet="MataKuliah">
+          <ScalarProperty Name="matakuliah_id" ColumnName="matakuliah_id" />
+          <ScalarProperty Name="matakuliah_nama" ColumnName="matakuliah_nama" />
+          <ScalarProperty Name="matakuliah_semester" ColumnName="matakuliah_semester" />
+          <ScalarProperty Name="matakuliah_harga" ColumnName="matakuliah_harga" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seminars">
+      <EntityTypeMapping TypeName="KampusModel.Seminar">
+        <MappingFragment StoreEntitySet="Seminar">
+          <ScalarProperty Name="seminar_id" ColumnName="seminar_id" />
+          <ScalarProperty Name="seminar_nama" ColumnName="seminar_nama" />
+          <ScalarProperty Name="seminar_dosen" ColumnName="seminar_dosen" />
+          <ScalarProperty Name="seminar_topik" ColumnName="seminar_topik" />
+          <ScalarProperty Name="seminar_harga" ColumnName="seminar_harga" />
+          <ScalarProperty Name="seminar_tanggal" ColumnName="seminar_tanggal" />
+          <ScalarProperty Name="seminar_ket" ColumnName="seminar_ket" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

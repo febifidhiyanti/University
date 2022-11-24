@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KampusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Mahasiswa">
+          <Key>
+            <PropertyRef Name="NRP" />
+          </Key>
+          <Property Name="NRP" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="IDMataKuliah" Type="int" Nullable="false" />
+          <Property Name="IDSeminar" Type="int" Nullable="false" />
+          <Property Name="mahasiswa_semester" Type="int" />
+          <Property Name="mahasiswa_nama" Type="nvarchar" MaxLength="50" />
+          <Property Name="mahasiswa_jurusan" Type="nvarchar" MaxLength="50" />
+          <Property Name="mahasiswa_alamat" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MataKuliah">
+          <Key>
+            <PropertyRef Name="matakuliah_id" />
+          </Key>
+          <Property Name="matakuliah_id" Type="int" Nullable="false" />
+          <Property Name="matakuliah_nama" Type="nvarchar" MaxLength="50" />
+          <Property Name="matakuliah_semester" Type="int" />
+          <Property Name="matakuliah_harga" Type="int" />
+        </EntityType>
+        <EntityType Name="Seminar">
+          <Key>
+            <PropertyRef Name="seminar_id" />
+          </Key>
+          <Property Name="seminar_id" Type="int" Nullable="false" />
+          <Property Name="seminar_nama" Type="nvarchar" MaxLength="50" />
+          <Property Name="seminar_dosen" Type="nvarchar" MaxLength="50" />
+          <Property Name="seminar_topik" Type="nvarchar" MaxLength="50" />
+          <Property Name="seminar_harga" Type="nvarchar" MaxLength="50" />
+          <Property Name="seminar_tanggal" Type="datetime" />
+          <Property Name="seminar_ket" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Mahasiswa_To_MataKuliah">
+          <End Role="MataKuliah" Type="Self.MataKuliah" Multiplicity="1" />
+          <End Role="Mahasiswa" Type="Self.Mahasiswa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MataKuliah">
+              <PropertyRef Name="matakuliah_id" />
+            </Principal>
+            <Dependent Role="Mahasiswa">
+              <PropertyRef Name="IDMataKuliah" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mahasiswa_To_Seminar">
+          <End Role="Seminar" Type="Self.Seminar" Multiplicity="1" />
+          <End Role="Mahasiswa" Type="Self.Mahasiswa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seminar">
+              <PropertyRef Name="seminar_id" />
+            </Principal>
+            <Dependent Role="Mahasiswa">
+              <PropertyRef Name="IDSeminar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KampusModelStoreContainer">
+          <EntitySet Name="Mahasiswa" EntityType="Self.Mahasiswa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MataKuliah" EntityType="Self.MataKuliah" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seminar" EntityType="Self.Seminar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Mahasiswa_To_MataKuliah" Association="Self.FK_Mahasiswa_To_MataKuliah">
+            <End Role="MataKuliah" EntitySet="MataKuliah" />
+            <End Role="Mahasiswa" EntitySet="Mahasiswa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mahasiswa_To_Seminar" Association="Self.FK_Mahasiswa_To_Seminar">
+            <End Role="Seminar" EntitySet="Seminar" />
+            <End Role="Mahasiswa" EntitySet="Mahasiswa" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KampusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Mahasiswa">
+          <Key>
+            <PropertyRef Name="NRP" />
+          </Key>
+          <Property Name="NRP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IDMataKuliah" Type="Int32" Nullable="false" />
+          <Property Name="IDSeminar" Type="Int32" Nullable="false" />
+          <Property Name="mahasiswa_semester" Type="Int32" />
+          <Property Name="mahasiswa_nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mahasiswa_jurusan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mahasiswa_alamat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MataKuliah" Relationship="Self.FK_Mahasiswa_To_MataKuliah" FromRole="Mahasiswa" ToRole="MataKuliah" />
+          <NavigationProperty Name="Seminar" Relationship="Self.FK_Mahasiswa_To_Seminar" FromRole="Mahasiswa" ToRole="Seminar" />
+        </EntityType>
+        <EntityType Name="MataKuliah">
+          <Key>
+            <PropertyRef Name="matakuliah_id" />
+          </Key>
+          <Property Name="matakuliah_id" Type="Int32" Nullable="false" />
+          <Property Name="matakuliah_nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="matakuliah_semester" Type="Int32" />
+          <Property Name="matakuliah_harga" Type="Int32" />
+          <NavigationProperty Name="Mahasiswas" Relationship="Self.FK_Mahasiswa_To_MataKuliah" FromRole="MataKuliah" ToRole="Mahasiswa" />
+        </EntityType>
+        <EntityType Name="Seminar">
+          <Key>
+            <PropertyRef Name="seminar_id" />
+          </Key>
+          <Property Name="seminar_id" Type="Int32" Nullable="false" />
+          <Property Name="seminar_nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="seminar_dosen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="seminar_topik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="seminar_harga" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="seminar_tanggal" Type="DateTime" Precision="3" />
+          <Property Name="seminar_ket" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mahasiswas" Relationship="Self.FK_Mahasiswa_To_Seminar" FromRole="Seminar" ToRole="Mahasiswa" />
+        </EntityType>
+        <Association Name="FK_Mahasiswa_To_MataKuliah">
+          <End Role="MataKuliah" Type="Self.MataKuliah" Multiplicity="1" />
+          <End Role="Mahasiswa" Type="Self.Mahasiswa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MataKuliah">
+              <PropertyRef Name="matakuliah_id" />
+            </Principal>
+            <Dependent Role="Mahasiswa">
+              <PropertyRef Name="IDMataKuliah" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mahasiswa_To_Seminar">
+          <End Role="Seminar" Type="Self.Seminar" Multiplicity="1" />
+          <End Role="Mahasiswa" Type="Self.Mahasiswa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seminar">
+              <PropertyRef Name="seminar_id" />
+            </Principal>
+            <Dependent Role="Mahasiswa">
+              <PropertyRef Name="IDSeminar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KampusEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Mahasiswas" EntityType="Self.Mahasiswa" />
+          <EntitySet Name="MataKuliahs" EntityType="Self.MataKuliah" />
+          <EntitySet Name="Seminars" EntityType="Self.Seminar" />
+          <AssociationSet Name="FK_Mahasiswa_To_MataKuliah" Association="Self.FK_Mahasiswa_To_MataKuliah">
+            <End Role="MataKuliah" EntitySet="MataKuliahs" />
+            <End Role="Mahasiswa" EntitySet="Mahasiswas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mahasiswa_To_Seminar" Association="Self.FK_Mahasiswa_To_Seminar">
+            <End Role="Seminar" EntitySet="Seminars" />
+            <End Role="Mahasiswa" EntitySet="Mahasiswas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KampusModelStoreContainer" CdmEntityContainer="KampusEntities">
+          <EntitySetMapping Name="Mahasiswas">
+            <EntityTypeMapping TypeName="KampusModel.Mahasiswa">
+              <MappingFragment StoreEntitySet="Mahasiswa">
+                <ScalarProperty Name="NRP" ColumnName="NRP" />
+                <ScalarProperty Name="IDMataKuliah" ColumnName="IDMataKuliah" />
+                <ScalarProperty Name="IDSeminar" ColumnName="IDSeminar" />
+                <ScalarProperty Name="mahasiswa_semester" ColumnName="mahasiswa_semester" />
+                <ScalarProperty Name="mahasiswa_nama" ColumnName="mahasiswa_nama" />
+                <ScalarProperty Name="mahasiswa_jurusan" ColumnName="mahasiswa_jurusan" />
+                <ScalarProperty Name="mahasiswa_alamat" ColumnName="mahasiswa_alamat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MataKuliahs">
+            <EntityTypeMapping TypeName="KampusModel.MataKuliah">
+              <MappingFragment StoreEntitySet="MataKuliah">
+                <ScalarProperty Name="matakuliah_id" ColumnName="matakuliah_id" />
+                <ScalarProperty Name="matakuliah_nama" ColumnName="matakuliah_nama" />
+                <ScalarProperty Name="matakuliah_semester" ColumnName="matakuliah_semester" />
+                <ScalarProperty Name="matakuliah_harga" ColumnName="matakuliah_harga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seminars">
+            <EntityTypeMapping TypeName="KampusModel.Seminar">
+              <MappingFragment StoreEntitySet="Seminar">
+                <ScalarProperty Name="seminar_id" ColumnName="seminar_id" />
+                <ScalarProperty Name="seminar_nama" ColumnName="seminar_nama" />
+                <ScalarProperty Name="seminar_dosen" ColumnName="seminar_dosen" />
+                <ScalarProperty Name="seminar_topik" ColumnName="seminar_topik" />
+                <ScalarProperty Name="seminar_harga" ColumnName="seminar_harga" />
+                <ScalarProperty Name="seminar_tanggal" ColumnName="seminar_tanggal" />
+                <ScalarProperty Name="seminar_ket" ColumnName="seminar_ket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

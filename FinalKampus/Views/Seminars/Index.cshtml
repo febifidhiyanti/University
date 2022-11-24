@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FinalKampus.Models.Seminar>
+
+@{
+    ViewBag.Title = "Seminar";
+}
+
+<h2>Seminar</h2>
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Nama Seminar
+        </th>
+        <th>
+           Dosen Seminar
+        </th>
+        <th>
+           Topik Seminar
+        </th>
+        <th>
+           Harga seminar
+        </th>
+        <th>
+           Tanggal Seminar
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Aksi
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.seminar_nama)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seminar_dosen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seminar_topik)
+            </td>
+            <td>
+                Rp.@Html.DisplayFor(modelItem => item.seminar_harga),-
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seminar_tanggal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seminar_ket)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.seminar_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.seminar_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.seminar_id })
+            </td>
+        </tr>
+    }
+
+</table>
